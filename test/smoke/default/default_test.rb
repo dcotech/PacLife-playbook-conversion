@@ -16,3 +16,12 @@ end
 describe port(80), :skip do
   it { should_not be_listening }
 end
+describe user('zabbix') do
+  its('group') { should eq 'zabbix'}
+  its('home') { should eq '/home/zabbix'}
+  its('shell') { should eq '/bin/bash' }
+end
+
+describe directory('/home/zabbix/zabbix_agentd.d') do
+  it { should exist }
+end
